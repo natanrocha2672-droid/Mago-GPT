@@ -1,0 +1,22 @@
+{
+  "name": "wppconnect-monthly-scheduler",
+  "version": "1.0.0",
+  "description": "Frontend e backend para agendar mensagens mensais via WPPConnect",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@wppconnect-team/wppconnect": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "node-cron": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
