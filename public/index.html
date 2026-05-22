@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agendador WhatsApp</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">WPPConnect Scheduler</p>
+          <h1>Agende mensagens mensais pelo WhatsApp</h1>
+          <p class="subtitle">Configure o número remetente, destinatário, mensagem e horário. Depois conecte o WhatsApp pelo QR Code.</p>
+        </div>
+        <div class="status-card">
+          <span id="statusBadge" class="badge">Carregando...</span>
+          <p id="sessionText">Sessão: -</p>
+          <p id="schedulerText">Agendamento: -</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <form id="configForm" class="card">
+          <h2>Configuração</h2>
+
+          <label>
+            Número que vai enviar
+            <input id="senderPhone" name="senderPhone" placeholder="Ex: 5588999999999" inputmode="numeric" autocomplete="off" />
+            <small>Esse número será usado para escanear o QR Code e enviar a mensagem.</small>
+          </label>
+
+          <label>
+            Número que vai receber
+            <input id="receiverPhone" name="receiverPhone" placeholder="Ex: 5588999999999" inputmode="numeric" autocomplete="off" />
+          </label>
+
+          <label>
+            Mensagem mensal
+            <textarea id="message" name="message" rows="5" placeholder="Digite a mensagem que será enviada todo mês"></textarea>
+          </label>
+
+          <label>
+            Agendamento cron
+            <input id="cronExpression" name="cronExpression" placeholder="0 9 1 * *" />
+            <small>Exemplo: <strong>0 9 1 * *</strong> envia todo dia 1 às 09:00.</small>
+          </label>
+
+          <label class="toggle">
+            <input id="enabled" name="enabled" type="checkbox" />
+            <span>Ativar envio automático mensal</span>
+          </label>
+
+          <div class="actions">
+            <button type="submit" class="primary">Salvar configuração</button>
+            <button type="button" id="sendTestBtn">Enviar teste agora</button>
+          </div>
+        </form>
+
+        <section class="card">
+          <h2>Conexão WhatsApp</h2>
+          <p class="muted">Depois de salvar a configuração, clique em iniciar e escaneie o QR Code com o número remetente.</p>
+
+          <div class="actions vertical">
+            <button id="startBtn" class="primary" type="button">Iniciar WhatsApp</button>
+            <button id="stopBtn" type="button">Parar sessão</button>
+            <button id="refreshBtn" type="button">Atualizar status</button>
+          </div>
+
+          <div id="qrBox" class="qr-box hidden">
+            <h3>Escaneie o QR Code</h3>
+            <img id="qrImage" alt="QR Code do WhatsApp" />
+            <p>Abra o WhatsApp no número remetente, vá em aparelhos conectados e escaneie.</p>
+          </div>
+
+          <div class="log-box">
+            <h3>Último envio</h3>
+            <pre id="lastSend">Nenhum envio ainda.</pre>
+          </div>
+        </section>
+      </section>
+
+      <p id="toast" class="toast hidden"></p>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
